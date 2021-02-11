@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg main-navbar pl-0">
+
+    <a class="navbar-brand pb-2" href=""><img class="logo mb-2" src="../../assets/Images/Keka_Logo_Black.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <div></div>
+        <div>
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link">{{todayDate | date:'d MMM y'}}</a>
+                </li>
+                <li class="nav-item">
+                    <i class="far fa-sun text-light"></i>
+                </li>
+               
+                <li class="nav-item align-self-center" >
+                  <span class="text-light"> {{userName}}</span>&nbsp;
+                </li>
+                <li class="nav-item align-self-center" >
+                  <span class="text-light" (click)="logout()"> logout</span>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>

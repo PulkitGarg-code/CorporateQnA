@@ -1,0 +1,63 @@
+<div class="user-details-component details-allusers-shared" *ngIf="user">
+
+    <div class="mx-4">
+
+        <div class="d-flex my-3 back-to-users" [routerLink]="['/ui/forum/users']">
+            <i class="fas fa-arrow-left dark-grey"></i>&nbsp;&nbsp;
+            <h6 class="font-s13 dark-grey"> Back to Users</h6>
+        </div>
+
+        <div class="card flex-column">
+            <div class="card-body p-0 d-flex">
+
+                <div class="d-flex p-3">
+                    <div>
+                        <img src="{{user.profileImage}}" class="profile-img mt-1" alt="profile img">
+                    </div>
+                    <div class="px-2">
+                        <h6 class="card-title mb-1">{{user.fullName | titlecase}}</h6>
+                        <h6 class="card-text m-0">{{user.designation | titlecase }}</h6>
+                        <h6 class="card-text">{{user.department |titlecase}}, {{user.location|titlecase}}</h6>
+                        <div class="d-flex gap-16">
+                            <h6 class="total-count"><img src="../../../../../assets/Images/like.png" alt=""
+                                    class="like-dislike-icon">
+                                {{user.totalLikes}}</h6>
+                            <h6 class="total-count"><img src="../../../../../assets/Images/dislike.png" alt="like"
+                                    class="like-dislike-icon">
+                                {{user.totalDislikes}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex gap-16 px-5 py-3">
+                        <div class="count-box text-center">
+                            <h6 class="total-count my-2 font-s18">{{user.totalQuestionsAsked}}</h6>
+                            <h6 class="card-text f-size10">Questions Asked</h6>
+                        </div>
+                        <div class="count-box text-center">
+                            <h6 class="total-count my-2 font-s18">{{user.totalQuestionsAnswered}}</h6>
+                            <h6 class="card-text f-size10">Questions Answered</h6>
+                        </div>
+                        <div class="count-box text-center">
+                            <h6 class="total-count my-2 font-s18">{{user.totalQuestionsSolved}}</h6>
+                            <h6 class="card-text f-size10">Questions Solved</h6>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                <ul class="nav sub-topnav">
+                    <li class="py-2" routerLinkActive="active"><a class="px-3"
+                            [routerLink]="['/ui/forum/users/details/',1]">All Questions</a></li>
+                    <li class="py-2" routerLinkActive="active"><a class="px-3"
+                            [routerLink]="['/ui/forum/users/details/2']">Answered</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <app-question [(userID)]="user.userID"></app-question>
+    </div>
+
+</div>

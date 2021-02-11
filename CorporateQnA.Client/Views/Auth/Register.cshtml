@@ -1,0 +1,52 @@
+﻿@model RegisterModel;
+
+<div class="p-4">
+	<h1 class="text-success text-center">Register</h1>
+	<form asp-controller="Auth" asp-action="Register" method="post">
+		<input type="hidden" asp-for="ReturnUrl" />
+		<div class="form-group m-0">
+			<label>Username</label><span asp-validation-for="Username" class="text-danger ml-2"></span>
+			<input asp-for="Username" class="form-control" />
+		</div>
+		<div class="form-group m-0">
+			<label>Email</label><span asp-validation-for="Email" class="text-danger ml-2"></span>
+			<input asp-for="Email" class="form-control" />
+		</div>
+		<div class="form-group m-0">
+			<label> Designation</label><span asp-validation-for="Designation" class="text-danger ml-2"></span>
+			<input asp-for="Designation" class="form-control" />
+		</div>
+		<div class="form-group m-0">
+			<label> Location</label><span asp-validation-for="Location" class="text-danger ml-2"></span>
+			<input asp-for="Location" class="form-control" />
+		</div>
+		<div class="form-group m-0">
+			<label> Department</label><span asp-validation-for="Department" class="text-danger ml-2"></span>
+			<input asp-for="Department" class="form-control" />
+		</div>
+		<div class="form-group m-0">
+			<label> Profile Image</label><span asp-validation-for="ProfileImage" class="text-danger ml-2"></span>
+			<input asp-for="ProfileImage" class="form-control" />
+		</div>
+		<div class="form-group m-0">
+			<label>Password</label><span asp-validation-for="Password" class="text-danger ml-2"></span>
+			<input type="password" asp-for="Password" class="form-control" />
+		</div>
+		<div class="form-group m-0">
+			<label>Confirm Password</label><span asp-validation-for="ConfirmPassword" class="text-danger ml-2"></span>
+			<input type="password" asp-for="ConfirmPassword" class="form-control" />
+		</div>
+
+		@if (ViewBag.Errors != null){
+			<ul class="mt-1">
+				@foreach (var i in ViewBag.Errors){
+					<li class="text-danger">@i</li>}
+			</ul>
+		}
+		<div class="mt-1 d-flex justify-content-center mt-4">
+			<input type="submit" value="Register" class="btn btn-success" />
+		</div>
+
+	</form>
+</div>
+

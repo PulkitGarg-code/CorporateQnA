@@ -1,0 +1,40 @@
+<div class="filters-container">
+
+    <div class="d-flex justify-content-between">
+        <div class="d-flex mx-4 my-2">
+            <div>
+                <div class="form-group">
+                    <label class="label-title">Categories</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text white pr-0"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" [(ngModel)]="searchInput" class="form-control search-input"
+                            placeholder="Search">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="d-flex flex-column ml-4">
+                    <label class="label-title">Show </label>
+                    <select class="dropdown-box" [(ngModel)]="selectedOption">
+                        <option *ngFor="let option of options" [ngValue]="option"> {{option}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex ml-2 align-self-center">
+                <a class="btn reset-btn" (click)="reset()"> <i class="fas fa-undo"></i> &nbsp; Reset</a>
+            </div>
+        </div>
+
+        <div class="px-2 py-3">
+            <a class="m-2 btn add-btn" (click)="openModal()">+ Category</a>
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <app-all-categories [(selectedOption)]="selectedOption" [(searchInput)]="searchInput"></app-all-categories>
+</div>

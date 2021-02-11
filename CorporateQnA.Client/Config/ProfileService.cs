@@ -1,0 +1,51 @@
+﻿
+using IdentityServer4.Models;
+using IdentityServer4.Services;
+using System.Linq;
+using System.Threading.Tasks;
+using CorporateQnA.Services.Models;
+using Microsoft.AspNetCore.Identity;
+using IdentityServer4.Extensions;
+using System.Security.Claims;
+using CorporateQnA.Services.Services;
+
+namespace CorporateQnA.Client.Config
+{
+    public class ProfileService : IProfileService
+    {
+        private readonly IUserService userService;
+        private readonly UserManager<AppIdentityUser> userManager;
+        private readonly IUserClaimsPrincipalFactory<AppIdentityUser> userClaimsPrincipalFactory;
+
+        public ProfileService(IUserService userService, UserManager<AppIdentityUser> userManager, IUserClaimsPrincipalFactory<AppIdentityUser> userClaimsPrincipalFactory)
+        {
+            this.userService = userService;
+            this.userManager = userManager;
+            this.userClaimsPrincipalFactory = userClaimsPrincipalFactory;
+        }
+
+        public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+        {
+            var sub = context.Subject.GetSubjectId();
+            var user = await this.userManager.FindByIdAsync(sub);
+            var userData = this.userService.GetUser(user.UserID);
+            var principal = await userClaimsPrincipalFactory.CreateAsync(user);
+
+            var claims = principal.Claims.ToList();
+            claims.Add(new Claim("location", userData.Location));
+            claims.Add(new Claim("department", userData.Department));
+            claims.Add(new Claim("profileImage", userData.ProfileImage));
+            claims.Add(new Claim("designation", userData.Designation));
+            claims.Add(new Claim("fullName", userData.FullName));
+            claims.Add(new Claim("userId", userData.Id.ToString()));
+            context.IssuedClaims = claims;
+        }
+
+        public async Task IsActiveAsync(IsActiveContext context)
+        {
+            var sub = context.Subject.GetSubjectId();
+            var user = await userManager.FindByIdAsync(sub);
+            context.IsActive = user != null;
+        }
+    }
+}

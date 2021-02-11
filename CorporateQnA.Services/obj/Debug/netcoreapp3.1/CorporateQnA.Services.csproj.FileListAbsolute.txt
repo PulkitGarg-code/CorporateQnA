@@ -1,0 +1,9 @@
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\bin\Debug\netcoreapp3.1\CorporateQnA.Services.deps.json
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\bin\Debug\netcoreapp3.1\CorporateQnA.Services.dll
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\bin\Debug\netcoreapp3.1\CorporateQnA.Services.pdb
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\obj\Debug\netcoreapp3.1\CorporateQnA.Services.AssemblyInfoInputs.cache
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\obj\Debug\netcoreapp3.1\CorporateQnA.Services.AssemblyInfo.cs
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\obj\Debug\netcoreapp3.1\CorporateQnA.Services.csproj.CoreCompileInputs.cache
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\obj\Debug\netcoreapp3.1\CorporateQnA.Services.dll
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\obj\Debug\netcoreapp3.1\CorporateQnA.Services.pdb
+C:\Users\pulki\source\repos\CorporateQnA.Web\CorporateQnA.Services\obj\Debug\netcoreapp3.1\CorporateQnA.Services.csprojAssemblyReference.cache

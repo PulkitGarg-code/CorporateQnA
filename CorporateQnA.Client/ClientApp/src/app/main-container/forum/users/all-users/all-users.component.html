@@ -1,0 +1,63 @@
+<div class="filters-container">
+
+    <div class="d-flex mx-4 my-2 justify-content-between">
+        <div class="form-group">
+            <label class="label-title">Users</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text white pr-0"><i class="fa fa-search"></i></span>
+                </div>
+                <input type="text" [(ngModel)]="searchInput" class="form-control search-input" placeholder="Search">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="all-users-container details-allusers-shared m-2">
+
+    <div *ngFor="let user of filteredUsers" class="m-3 d-inline-block">
+
+        <div class="card" (click)="showUserDetails(user)">
+            <div class="card-body p-0">
+
+                <div class="d-flex p-3">
+                    <div>
+                        <img src="{{user.profileImage}}" class="profile-img mt-1" alt="profile img">
+                    </div>
+                    <div class="px-2">
+                        <h6 class="card-title mb-1">{{user.fullName | titlecase}}</h6>
+                        <h6 class="card-text m-0">{{user.designation | titlecase }}</h6>
+                        <h6 class="card-text">{{user.department |titlecase}}, {{user.location|titlecase}}</h6>
+                        <div class="d-flex gap-16">
+                            <h6 class="total-count"><img src="../../../../../assets/Images/like.png" alt=""
+                                    class="like-dislike-icon">
+                                {{user.totalLikes}}</h6>
+                            <h6 class="total-count"><img src="../../../../../assets/Images/dislike.png" alt="like"
+                                    class="like-dislike-icon">
+                                {{user.totalDislikes}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <hr class="m-0">
+                <div class="d-flex">
+                    <div class="count-box text-center col-4">
+                        <h6 class="total-count mb-1">{{user.totalQuestionsAsked}}</h6>
+                        <h6 class="card-text">Questions Asked</h6>
+                    </div>
+                    <div class="count-box text-center">
+                        <h6 class="total-count mb-1">{{user.totalQuestionsAnswered}}</h6>
+                        <h6 class="card-text">Questions Answered</h6>
+                    </div>
+                    <div class="count-box text-center border-0">
+                        <h6 class="total-count mb-1">{{user.totalQuestionsSolved}}</h6>
+                        <h6 class="card-text">Questions Solved</h6>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

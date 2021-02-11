@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left text-light">{{title}}</h4>
+    <button type="button" class="close pull-right text-light" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="form-wrapper p-2">
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit();">
+
+            <div class="form-group ">
+                <label class="label-title">Question</label>
+                <input type="text" class="input-text" name="questionTitle" placeholder="Enter your Question"
+                    formControlName="questionTitle">
+                <span class="requiredField"
+                    *ngIf="questionForm.get('questionTitle')?.touched && questionForm.get('questionTitle')?.hasError('required')">Required
+                </span>
+            </div>
+            <div class="form-group">
+                <label class="label-title">Description</label>
+                <div class="NgxEditor__Wrapper">
+                    <ngx-editor [editor]="editor" placeholder="Enter your Text here" name="description"
+                        formControlName="description">
+                    </ngx-editor>
+                    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+
+                </div>
+                <span class="requiredField"
+                    *ngIf="questionForm.get('description')?.touched && questionForm.get('description')?.hasError('required')">Required
+                </span>
+            </div>
+
+            <div class="form-group ">
+
+                    <label class="label-title">Category </label>
+                    <select class="dropdown-box" name="selectedCategory" formControlName="selectedCategory">
+                        <option [ngValue]="null" disabled selected>Select</option>
+                        <option *ngFor="let option of categoryOptions" [ngValue]="option.categoryId"> {{option.categoryName}}</option>
+                    </select>
+
+                <span class="requiredField"
+                    *ngIf="questionForm.get('selectedCategory')?.touched && questionForm.get('selectedCategory')?.hasError('required')">Required
+                </span>
+            </div>
+
+            <div class="d-flex justify-content-end pt-3">
+                <input type="button" class="modal-btn grey my-1" (click)="bsModalRef.hide()" value="Cancel">&nbsp;&nbsp;
+                <input type="submit" class="modal-btn my-1 px-4" value="Post">
+            </div>
+
+        </form>
+    </div>
+
+</div>

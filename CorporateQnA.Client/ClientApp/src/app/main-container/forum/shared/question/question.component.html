@@ -1,0 +1,59 @@
+<div class="row m-4 p-0 questions-component">
+
+    <div class="col-md-7 p-0">
+        <div>
+            <div class="question-card" [ngClass]="{'question-active': question.questionId == activeQuestionId}"
+                *ngFor="let question of filteredQuestions">
+
+                <div [class.resolved]="question.resolved"> </div>
+                <div class="d-flex m-3">
+
+                    <div class="text-center">
+                        <div class="pb-2">
+                            <img src="{{question.profileImage}}" class="profile-img-small" alt="">
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <button class="upVote-btn" (click)="incrementUpVote(question.questionId)">
+                                <span class="light-grey"><i class="fas fa-angle-up"></i>
+                                </span>
+                            </button>
+
+                            <span class="py-1 font-s14"> {{question.totalUpVotes}} </span>
+                        </div>
+                    </div>
+
+                    <div role="button" (click)="showAnswers(question)"
+                        class="pl-4 w-100">
+                        <h6 class="pr-1 font-s14 line-height-24" >{{question.title}}</h6>
+                        <p class="pr-1 font-s13 dark-grey">{{question.description}}</p>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex gap-25">
+                                <div>
+                                    <i class="fas fa-eye light-grey"></i>
+                                    <span class="font-s13 dark-grey"> {{ question.viewsCount}} Views</span>
+                                </div>
+                                <div>
+                                    <h6 class="answer-count">{{question.totalAnswers}} Answers</h6>
+                                </div>
+                            </div>
+                            <div *ngIf="!question.resolved; else elseBlock" class="time-ago">
+                                {{moment(question.createdAt).fromNow()}}
+                            </div>
+                            <ng-template #elseBlock>
+                                <span class="time-ago text-success">Resolved</span>
+                            </ng-template>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-5 p-0">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

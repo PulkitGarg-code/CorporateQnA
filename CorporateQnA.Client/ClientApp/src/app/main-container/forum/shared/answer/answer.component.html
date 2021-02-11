@@ -1,0 +1,128 @@
+<div   class="answers-component">
+    <div *ngIf="haveNoQuestions">
+        <div class="bg-selected-question">
+
+            <div *ngIf="selectedQuestion" class="py-3 px-3">
+
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-10">
+                        <div>
+                            <img src="{{selectedQuestion.profileImage}}" class="profile-img-small" alt="profile img">
+                        </div>
+                        <div class="d-flex py-1 gap-10">
+                            <h6 class="font-s14 line-height-24">{{selectedQuestion.fullName | titlecase}}</h6>
+                            <div *ngIf="!selectedQuestion.resolved; else elseBlock" class="time-ago">
+                                {{moment(selectedQuestion.createdAt).fromNow()}}
+                            </div>
+                            <ng-template #elseBlock>
+                                <span class="time-ago text-success">Resolved</span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div (click)="reportQuestion()" *ngIf="!isReported;else elseBlock1" role="button">
+                        <i class="fas fa-exclamation-circle clickable-btn px-1"></i>
+                        <span class="font-s13 dark-grey">Report this </span>
+                    </div>
+                    <div (click)="reportQuestion()" *ngIf="isReported" #elseBlock1 role="button">
+                        <i class="fas fa-exclamation-circle clickable-btn px-1"></i>
+                        <span class="font-s13 dark-grey">UnReport this </span>
+                    </div>
+                </div>
+                <div>
+                    <h6 class="font-s14 line-height-24">{{selectedQuestion.title}}</h6>
+                    <p class="font-s13 dark-grey">{{selectedQuestion.description}}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <h6 class="mb-3 px-3 answers-wrapper">Answers (<span *ngIf="answers">{{answers.length}}</span>)</h6>
+
+
+        <div class="my-3 mx-3">
+            <div *ngFor="let answer of answers;let i=index" class="my-3">
+                <div class="d-flex gap-10">
+                    <div>
+                        <img src="{{answer.profileImage}}" class="profile-img-small" alt="Profile img">
+                    </div>
+
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex gap-10">
+                                <h6 class="font-s14 line-height-24">{{answer.fullName | titlecase}}</h6>
+                                <div class="time-ago">
+                                    {{moment(answer.createdAt).fromNow()}}
+                                </div>
+                            </div>
+                            <div class="d-flex gap-10">
+                                <h6 class="font-s13">
+                                    <img (click)="toggleUserReaction(answer,0,i)"
+                                        src="../../../../../assets/Images/like.png" alt=""
+                                        class="like-dislike-icon clickable-btn">
+                                    {{answer.totalLikes}}
+                                </h6>
+
+                                <h6 class="font-s13">
+                                    <img (click)="toggleUserReaction(answer,1,i)"
+                                        src="../../../../../assets/Images/dislike.png" alt="like"
+                                        class="like-dislike-icon clickable-btn">
+                                    {{answer.totalDislikes}}
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="text-dark font-s13">
+                            {{answer.answerContent}}
+                        </div>
+                        <div class="d-flex checkbox-custom pt-2">
+
+                            <div>
+                                <label class="container">
+                                    <input type="checkbox"  (click)="markAsBest($event,answer.answerId)" name="checkBox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+
+                            <div class="font-s12">
+                                Mark as best solution
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="ngx-editor-sm" *ngIf="editorSm">
+                <div class="NgxEditor__Wrapper">
+                    <i class="fas fa-expand text-dark enlarge-icon" (click)="toggleEditor()"></i>
+                    <ngx-editor [editor]="editor" [(ngModel)]="html" [placeholder]="placeholder"></ngx-editor>
+                    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+                    <i class="material-icons btn-send" (click)="submitSolution()">send</i>
+                </div>
+            </div>
+            <div class="ngx-editor-lg" *ngIf="!editorSm">
+                <div class="NgxEditor__Wrapper">
+                    <div class="shrink-icon">
+                        <i class="fas fa-compress" (click)="toggleEditor()"></i>
+                    </div>
+                    <ngx-editor [editor]="editor" [(ngModel)]="html" [placeholder]="placeholder"></ngx-editor>
+                    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+                    <i class="material-icons btn-send" (click)="submitSolution()">send</i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    
+<div *ngIf="!haveNoQuestions">
+    <div class="text-center m-3 vertical-center">
+        <i class="fas fa-3x fa-arrow-left light-grey mb-3"></i>
+        <h5 class="light-grey font-weight-normal">Click on a question to see all the details</h5>
+    </div>
+</div> 
+
+
+</div>

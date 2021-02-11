@@ -1,0 +1,20 @@
+<div class="all-categories m-2">
+
+    <div *ngFor="let category of filteredCategories" class="m-3 d-inline-block">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">{{category.categoryName}}</h5>
+                    <p class="total-tagged">({{category.taggedInTotal}})</p>
+                </div>
+
+                <p class="card-text">{{category.description}}</p>
+                <p class="card-text">Tagged {{category.taggedInWeek}} this week, {{category.taggedInMonth}} this month
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+
+<div class="modal-header">
+    <h4 class="modal-title pull-left text-light">{{title}}</h4>
+    <button type="button" class="close pull-right text-light" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+
+    <div class="form-wrapper p-2">
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit();">
+
+            <div class="form-group ">
+                <label class="label-title">Category Name</label>
+                <input type="text" class="input-text" name="categoryName" placeholder="Enter Category Name"
+                    formControlName="categoryName">
+                <span class="requiredField"
+                    *ngIf="categoryForm.get('categoryName')?.touched && categoryForm.get('categoryName')?.hasError('required')">Required
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label class="label-title">Description</label>
+                <textarea class="input-text text-area h-100" rows="3" cols="40" name="description" placeholder="Enter Your Text Here"
+                    formControlName="description"></textarea>
+              <span class="requiredField"
+                    *ngIf="categoryForm.get('description')?.touched && categoryForm.get('description')?.hasError('required')">Required
+                </span>  
+            </div>
+
+            <div class="d-flex justify-content-end pt-3">
+                <input type="button" class="modal-btn grey my-1" (click)="bsModalRef.hide()"  value="Cancel">&nbsp;&nbsp;
+                <input type="submit"  class="modal-btn my-1" value="Save">
+    
+            </div>
+
+        </form>
+    </div>
+
+</div>
